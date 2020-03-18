@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.WebApi", "NetCore.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{739022DC-819B-4A1E-85C7-5948C6EB47FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplestNetCoreApp", "SimplestNetCoreApp\SimplestNetCoreApp.csproj", "{7DCD8458-1602-4D51-B546-7FAFA557DB4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
