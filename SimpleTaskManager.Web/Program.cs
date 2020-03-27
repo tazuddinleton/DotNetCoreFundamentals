@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace SimplestNetCoreApp
+namespace SimpleTaskManager.Web
 {
     public class Program
     {

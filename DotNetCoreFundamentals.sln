@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.Console", "NetCore.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.WebApi", "NetCore.WebApi\NetCore.WebApi.csproj", "{C65512CD-2A84-43C7-B904-DE3CF21E9737}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{739022DC-819B-4A1E-85C7-5948C6EB47FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationAndAuthorization", "AuthenticationAndAuthorization", "{571E0C2C-9956-45B2-9C89-CB45BE19DF82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTaskManager.Web", "SimpleTaskManager.Web\SimpleTaskManager.Web.csproj", "{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplestNetCoreApp", "SimplestNetCoreApp\SimplestNetCoreApp.csproj", "{7DCD8458-1602-4D51-B546-7FAFA557DB4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTaskManager.Data", "SimpleTaskManager.Data\SimpleTaskManager.Data.csproj", "{9F1A1341-622C-45D5-AF5D-822B47056C38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,21 +27,21 @@ Global
 		{C65512CD-2A84-43C7-B904-DE3CF21E9737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65512CD-2A84-43C7-B904-DE3CF21E9737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65512CD-2A84-43C7-B904-DE3CF21E9737}.Release|Any CPU.Build.0 = Release|Any CPU
-		{739022DC-819B-4A1E-85C7-5948C6EB47FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{739022DC-819B-4A1E-85C7-5948C6EB47FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{739022DC-819B-4A1E-85C7-5948C6EB47FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{739022DC-819B-4A1E-85C7-5948C6EB47FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C05878B6-E1EA-4E2F-9606-A1C05D6F9E27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DCD8458-1602-4D51-B546-7FAFA557DB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93} = {571E0C2C-9956-45B2-9C89-CB45BE19DF82}
+		{9F1A1341-622C-45D5-AF5D-822B47056C38} = {571E0C2C-9956-45B2-9C89-CB45BE19DF82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFE1C64F-0286-44AD-A8F8-D9F11DD4840D}
