@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using SimpleTaskManager.Data.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SimpleTaskManager.Data.Repositories;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace SimpleTaskManager.Web
 {
@@ -27,7 +28,7 @@ namespace SimpleTaskManager.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(x=> x.Filters.Add(new AuthorizeFilter()));
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddDbContext<TaskManagerContext>(option => {
                 option.UseSqlServer(
