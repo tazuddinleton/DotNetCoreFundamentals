@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SimpleTaskManager.Data.Dtos.TaskDto>
+@{
+    ViewData["Title"] = "Simple Task Manager";
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Assigned To</th>
+                <th>Assigned By</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var task in Model)
+            {
+        <tr>
+            <td>@task.Title</td>
+            <td>@task.Description</td>
+            <td>@task.AssignedTo</td>
+            <td>@task.AssignedBy</td>
+            <td>@task.Priority</td>
+            <td>@task.Status</td>
+        </tr>
+            }
+        </table>
+        <a asp-action="Add">Add</a>
+
+    </div>
+</div>
+
+

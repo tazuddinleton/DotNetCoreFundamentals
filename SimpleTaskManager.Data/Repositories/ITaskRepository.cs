@@ -8,8 +8,8 @@ namespace SimpleTaskManager.Data.Repositories
 {
     public interface ITaskRepository
     {
-        Task<List<TaskDto>> GetAll();        
-        Task<int> Add(TaskDto dto);
-        Task<TaskDto> GetById(int id);
+        Task<List<TaskDto>> GetAllAsync();        
+        Task<int> AddAsync(TaskDto dto);
+        Task<TaskDto> GetByIdAsync(int id);
     }
 }

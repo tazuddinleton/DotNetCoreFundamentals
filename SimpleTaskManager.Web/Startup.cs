@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleTaskManager.Data.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using SimpleTaskManager.Data.Repositories;
 
 namespace SimpleTaskManager.Web
 {
@@ -27,6 +28,7 @@ namespace SimpleTaskManager.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddDbContext<TaskManagerContext>(option => {
                 option.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), 
@@ -61,10 +63,11 @@ namespace SimpleTaskManager.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
+                endpoints.MapControllerRoute("Default", "{Controller=Task}/{Action=Index}/{id?}");
             });
         }
     }

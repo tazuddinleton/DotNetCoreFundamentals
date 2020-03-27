@@ -18,7 +18,7 @@ namespace SimpleTaskManager.Data.Repositories
         {
             _context = context;
         }
-        public Task<int> Add(TaskDto dto)
+        public Task<int> AddAsync(TaskDto dto)
         {
 
             var task = Entities.Task.FromDto(dto);
@@ -26,12 +26,12 @@ namespace SimpleTaskManager.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
-        public Task<List<TaskDto>> GetAll()
+        public Task<List<TaskDto>> GetAllAsync()
         {
             return _context.Tasks.Select(t => t.ToDto()).ToListAsync();
         }
 
-        public async Task<TaskDto> GetById(int id)
+        public async Task<TaskDto> GetByIdAsync(int id)
         {
             var entity = await _context.Tasks.FirstAsync(t => t.TaskId == id);
             return entity.ToDto();

@@ -1,6 +1,7 @@
 ﻿using SimpleTaskManager.Data.Dtos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SimpleTaskManager.Data.Entities
@@ -8,7 +9,9 @@ namespace SimpleTaskManager.Data.Entities
     public class Task
     {
         public int TaskId { get; set; }
+        [Required(ErrorMessage ="Please enter a title.")]
         public string Title { get; set; }
+        [MaxLength(500, ErrorMessage ="Currently we are supporting 500 characters for description")]
         public string Description { get; set; }
         public int CreatedById { get; set; }        
         public int? AssignedById { get; set; }
@@ -39,10 +42,11 @@ namespace SimpleTaskManager.Data.Entities
         {
             return new TaskDto()
             {
+                TaskId = TaskId,
                 Title = Title,
                 Description = Description,
-                AssignedById = (int)AssignedById,
-                AssignedToId = (int)AssignedToId,
+                AssignedById = AssignedById ?? null,
+                AssignedToId = AssignedToId ?? null,
                 CreatedAt = CreatedAt,
                 CreatedById = CreatedById,
                 LastUpdated = LastUpdated,

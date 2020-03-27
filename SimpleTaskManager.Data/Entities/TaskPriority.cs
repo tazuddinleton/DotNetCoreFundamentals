@@ -10,4 +10,6 @@ namespace SimpleTaskManager.Data.Entities
         Normal = 2,
         High = 3
     }
+
+
 }
