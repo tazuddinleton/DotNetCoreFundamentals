@@ -23,11 +23,8 @@ namespace SimpleTaskManager.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            ViewBag.Title = "Simple Task Manager - Tasks";
-            
-            var list = await _taskRepo.GetAllAsync();
-
-            return View(list);
+            ViewBag.Title = "Simple Task Manager - Tasks";                        
+            return View(await _taskRepo.GetAllAsync());
         }
 
         [HttpGet]
@@ -42,6 +39,8 @@ namespace SimpleTaskManager.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(TaskDto dto)
         {
+            if (!ModelState.IsValid)
+                return await Add();
             ViewBag.Title = "Simple Task Manager - Add";
             
             await _taskRepo.AddAsync(dto);

@@ -11,6 +11,7 @@ namespace SimpleTaskManager.Data.Entities
         public int TaskId { get; set; }
         [Required(ErrorMessage ="Please enter a title.")]
         public string Title { get; set; }
+
         [MaxLength(500, ErrorMessage ="Currently we are supporting 500 characters for description")]
         public string Description { get; set; }
         public int CreatedById { get; set; }        
@@ -18,8 +19,9 @@ namespace SimpleTaskManager.Data.Entities
         public int? AssignedToId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastUpdated { get; set; }
-
+        [Required]
         public TaskStatus Status { get; set; }
+        [Required]
         public TaskPriority Priority { get; set; }
 
         public static Task FromDto(TaskDto dto)

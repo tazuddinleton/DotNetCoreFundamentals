@@ -30,6 +30,7 @@ namespace SimpleTaskManager.Web
         {
             services.AddControllersWithViews(x=> x.Filters.Add(new AuthorizeFilter()));
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddDbContext<TaskManagerContext>(option => {
                 option.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), 

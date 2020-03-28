@@ -12,12 +12,27 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <img src="~/img/ConfArchSmall.png" style="max-width:100%" />
+                <img src="~/img/taskmanager.jpg" style="max-width:100%" />
             </div>
             <div class="col-md-9 titlecol">
                 <span class="title">@ViewBag.Title</span>
             </div>
+            <div class="col-md-4 pull-right">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <H3>Hi @User.Identity.Name!</H3>
+                        <a asp-controller="Account" asp-action="Logout" class="btn btn-primary">Logout</a>
+                    }
+                    else
+                    {
+                        <H3>Login here: </H3>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login</a>
+                    }
+                }
+            </div>
         </div>
+        <br>
         <div>
             @RenderBody()
         </div>
