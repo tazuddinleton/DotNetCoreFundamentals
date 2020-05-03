@@ -17,11 +17,13 @@ namespace SimpleTaskManager.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IUserRepository _userRepo;
+       
 
         public AccountController(IUserRepository userRepo)
         {
-            _userRepo = userRepo;
+            _userRepo = userRepo;            
         }
+
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = "/")
         {
@@ -36,26 +38,15 @@ namespace SimpleTaskManager.Web.Controllers
             if (user == null)
                 return Unauthorized();
 
-            var claims = new List<Claim>
+            var authProp = new AuthenticationProperties
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Role, user.Role),
-            new Claim("FavoriteColor", user.FavoriteColor)
+                IsPersistent = model.RememberLogin
             };
-
-            var identity = new ClaimsIdentity(claims,
-                CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var principal = new ClaimsPrincipal(identity);
 
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
-                principal,
-                new AuthenticationProperties
-                {
-                    IsPersistent = model.RememberLogin
-                }
+                LoginHelper.GetLocalPrincipal(user),
+                authProp
                 );
 
             return LocalRedirect(model.ReturnUrl);
@@ -81,22 +72,13 @@ namespace SimpleTaskManager.Web.Controllers
         public async Task<IActionResult> GoogleLoginCallback()
         {
             var result = await HttpContext.AuthenticateAsync(ExternalAuthenticationDefaults.AuthenticationScheme);
-            var externalClaims = result.Principal.Claims.ToList();
-            var emailClaim = externalClaims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 
-            var user = _userRepo.GetByGoogleId(emailClaim.Value);
-
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role),
-                new Claim("FavoriteColor", user.FavoriteColor)
-            };
-
-            var identity = new ClaimsIdentity(claims,
-                CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
+            var principal = 
+            new ExternalClaimsPrincipalBuilder()
+                .AddAuthenticationResult(result)
+                .AddClaimsType(ClaimTypes.Email)
+                .AddUser(email => _userRepo.GetByEmail(email))
+                .Build();
 
             // delete temporary cookie used during google authentication
             await HttpContext.SignOutAsync(
@@ -108,6 +90,10 @@ namespace SimpleTaskManager.Web.Controllers
             return LocalRedirect(result.Properties.Items["returnUrl"]);
 
         }
+
+
+       
+
 
         public async Task<IActionResult> Logout()
         {

@@ -8,7 +8,7 @@ namespace SimpleTaskManager.Data.Repositories
     public interface IUserRepository
     {
         User GetByUsernameAndPassword(string username, string password);
-        User GetByGoogleId(string googleId);
+        User GetByEmail(string googleId);
         bool IsActiveUser(string name);
     }
 }

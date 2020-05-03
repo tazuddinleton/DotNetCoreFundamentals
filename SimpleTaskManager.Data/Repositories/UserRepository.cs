@@ -34,7 +34,7 @@ namespace SimpleTaskManager.Data.Repositories
             });
         }
 
-        public User GetByGoogleId(string googleId)
+        public User GetByEmail(string googleId)
         {
             return _users.FirstOrDefault(user => user.ExternalLoginId == googleId);
         }
