@@ -15,6 +15,8 @@ using SimpleTaskManager.Data.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SimpleTaskManager.Data.Repositories;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authentication.Google;
+using SimpleTaskManager.Web.Common;
 
 namespace SimpleTaskManager.Web
 {
@@ -28,18 +30,29 @@ namespace SimpleTaskManager.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews(x=> x.Filters.Add(new AuthorizeFilter()));
+            // By setting the AuthorizeFilter as global filter
+            // We are making sure every controller and actions are secured by default
+            services.AddControllersWithViews(x => x.Filters.Add(new AuthorizeFilter()));
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddDbContext<TaskManagerContext>(option => {
+            services.AddDbContext<TaskManagerContext>(option =>
+            {
                 option.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"), 
+                    Configuration.GetConnectionString("DefaultConnection"),
                     assembly => assembly.MigrationsAssembly(typeof(TaskManagerContext).Assembly.FullName)
-                    );         
+                    );
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+            .AddCookie( o => o.Events.OnValidatePrincipal = async (c) => {
+                if (!c.Principal.IsActiveAccount(services))
+                    c.RejectPrincipal();
+            })
+            .AddGoogle(o =>
+            {
+                o.ClientId = Configuration["google:client_id"];
+                o.ClientSecret = Configuration["google:client_secret"];                
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,14 +74,11 @@ namespace SimpleTaskManager.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-                
+
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
+         
                 endpoints.MapControllerRoute("Default", "{Controller=Task}/{Action=Index}/{id?}");
             });
         }
