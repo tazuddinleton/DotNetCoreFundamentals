@@ -19,7 +19,8 @@ namespace SimpleTaskManager.Data.Repositories
                 Password = "A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=",
                 FavoriteColor = "Blue",
                 Role = "Admin",
-                Active = true
+                Active = true,
+                ExternalLoginId = "getleton@gmail.com"
             });
 
             _users.Add(new User()
@@ -35,7 +36,7 @@ namespace SimpleTaskManager.Data.Repositories
 
         public User GetByGoogleId(string googleId)
         {
-            return _users.FirstOrDefault(user => user.GoogleId == googleId);
+            return _users.FirstOrDefault(user => user.ExternalLoginId == googleId);
         }
 
         public User GetByUsernameAndPassword(string username, string password)

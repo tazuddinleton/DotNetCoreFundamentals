@@ -39,20 +39,23 @@ namespace SimpleTaskManager.Web
             {
                 option.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
-                    assembly => assembly.MigrationsAssembly(typeof(TaskManagerContext).Assembly.FullName)
+                    optionBuilder => optionBuilder.MigrationsAssembly(typeof(TaskManagerContext).Assembly.FullName)
                     );
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie( o => o.Events.OnValidatePrincipal = async (c) => {
+            .AddCookie(o => o.Events.OnValidatePrincipal = async (c) => {
                 if (!c.Principal.IsActiveAccount(services))
                     c.RejectPrincipal();
             })
+            .AddCookie(ExternalAuthenticationDefaults.AuthenticationScheme)
             .AddGoogle(o =>
             {
+                o.SignInScheme = ExternalAuthenticationDefaults.AuthenticationScheme;
                 o.ClientId = Configuration["google:client_id"];
                 o.ClientSecret = Configuration["google:client_secret"];                
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +77,7 @@ namespace SimpleTaskManager.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
 
             app.UseEndpoints(endpoints =>

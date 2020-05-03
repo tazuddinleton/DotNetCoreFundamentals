@@ -82,9 +82,9 @@ namespace SimpleTaskManager.Web.Controllers
         {
             var result = await HttpContext.AuthenticateAsync(ExternalAuthenticationDefaults.AuthenticationScheme);
             var externalClaims = result.Principal.Claims.ToList();
-            var subjectIdClaim = externalClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var emailClaim = externalClaims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 
-            var user = _userRepo.GetByGoogleId(subjectIdClaim.Value);
+            var user = _userRepo.GetByGoogleId(emailClaim.Value);
 
             var claims = new List<Claim>
             {

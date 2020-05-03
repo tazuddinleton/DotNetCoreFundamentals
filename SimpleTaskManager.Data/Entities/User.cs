@@ -12,7 +12,7 @@ namespace SimpleTaskManager.Data.Entities
         public string Role { get; set; }
         public string FavoriteColor { get; set; }
 
-        public string GoogleId { get; set; }
+        public string ExternalLoginId { get; set; }
 
         public bool Active { get; set; }
 
