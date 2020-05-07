@@ -10,6 +10,7 @@ namespace SimpleTaskManager.Data.Repositories
     {
         Task<List<TaskDto>> GetAllAsync();        
         Task<int> AddAsync(TaskDto dto);
+        Task<int> EditAsync(TaskDto dto);
         Task<TaskDto> GetByIdAsync(int id);
     }
 }

@@ -46,5 +46,25 @@ namespace SimpleTaskManager.Web.Controllers
             await _taskRepo.AddAsync(dto);
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View(_taskRepo.GetByIdAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(TaskDto dto)
+        {
+            if (!ModelState.IsValid)
+                return await Add();
+            ViewBag.Title = "Simple Task Manager - Add";
+
+            await _taskRepo.EditAsync(dto);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

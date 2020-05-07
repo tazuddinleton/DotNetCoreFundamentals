@@ -26,6 +26,13 @@ namespace SimpleTaskManager.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
+        public Task<int> EditAsync(TaskDto dto)
+        {
+            var task = Entities.Task.FromDto(dto);
+            _context.Tasks.Update(task);
+            return _context.SaveChangesAsync();
+        }
+
         public Task<List<TaskDto>> GetAllAsync()
         {
             return _context.Tasks.Select(t => t.ToDto()).ToListAsync();

@@ -9,9 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.WebApi", "NetCore.W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationAndAuthorization", "AuthenticationAndAuthorization", "{571E0C2C-9956-45B2-9C89-CB45BE19DF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTaskManager.Web", "SimpleTaskManager.Web\SimpleTaskManager.Web.csproj", "{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskManager.Web", "SimpleTaskManager.Web\SimpleTaskManager.Web.csproj", "{3E84C711-EAC9-4B07-8A93-6D6B105FCA93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTaskManager.Data", "SimpleTaskManager.Data\SimpleTaskManager.Data.csproj", "{9F1A1341-622C-45D5-AF5D-822B47056C38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskManager.Data", "SimpleTaskManager.Data\SimpleTaskManager.Data.csproj", "{9F1A1341-622C-45D5-AF5D-822B47056C38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TagHelpers", "TagHelpers", "{103E6DBC-802B-43D5-9BEB-DD4B3B32ACB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHelpersAndViewComponents", "TagHelpersAndViewComponents\TagHelpersAndViewComponents.csproj", "{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PieShop", "PieShop", "{2A1C288E-AF60-49DE-B46A-B2C0F9FC5174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPieShop", "BPieShop\BPieShop.csproj", "{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,14 @@ Global
 		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F1A1341-622C-45D5-AF5D-822B47056C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +58,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3E84C711-EAC9-4B07-8A93-6D6B105FCA93} = {571E0C2C-9956-45B2-9C89-CB45BE19DF82}
 		{9F1A1341-622C-45D5-AF5D-822B47056C38} = {571E0C2C-9956-45B2-9C89-CB45BE19DF82}
+		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079} = {103E6DBC-802B-43D5-9BEB-DD4B3B32ACB8}
+		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47} = {2A1C288E-AF60-49DE-B46A-B2C0F9FC5174}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFE1C64F-0286-44AD-A8F8-D9F11DD4840D}
