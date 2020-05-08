@@ -34,6 +34,13 @@ namespace BPieShop.Controllers
             ViewBag.Categories = _pieCategoryRepository.Categories;
             
             return View(data);
-        }                
+        }
+
+        [HttpGet]
+        public IActionResult PieDetail(int id)
+        {
+            ViewBag.Categories = _pieCategoryRepository.Categories;
+            return View(_pieRepository.GetPieById(id));
+        }
     }
 }
