@@ -23,7 +23,8 @@ namespace BPieShop.Controllers
         public IActionResult Index(string category)
         {
             var data = new PiesLiestViewModel();
-            Func<Pie, bool> searchByCategory = pie => pie.CategoryId == _pieCategoryRepository.GetByName(category).CategoryId;
+            Func<Pie, bool> searchByCategory = pie => 
+                pie.CategoryId == _pieCategoryRepository.GetByName(category).CategoryId;
 
             if (string.IsNullOrEmpty(category))
                 data.Pies = _pieRepository.AllPies;
@@ -31,8 +32,7 @@ namespace BPieShop.Controllers
                 data.Pies = _pieRepository.AllPies.Where(searchByCategory);
 
             
-            ViewBag.Categories = _pieCategoryRepository.Categories;
-            
+            ViewBag.Categories = _pieCategoryRepository.Categories;            
             return View(data);
         }
 
@@ -40,7 +40,10 @@ namespace BPieShop.Controllers
         public IActionResult PieDetail(int id)
         {
             ViewBag.Categories = _pieCategoryRepository.Categories;
-            return View(_pieRepository.GetPieById(id));
+            var pie = _pieRepository.GetPieById(id);
+            if (pie == null)
+                return NotFound();
+            return View(pie);
         }
     }
 }

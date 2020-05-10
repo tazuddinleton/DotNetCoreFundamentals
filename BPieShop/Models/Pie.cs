@@ -21,5 +21,27 @@ namespace BPieShop.Models
         public bool InStock { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public ICollection<PieReview> Reviews { get; set; }
+
+        public Pie()
+        {
+            Reviews = new List<PieReview>();
+
+           
+        }
+        public double GetRating()
+        {
+            var group = Reviews.GroupBy(x => x.Rating).ToList();            
+            double weight = 0;
+            double totalOccurance = 0;
+            group.ForEach(x =>
+            {
+                weight += x.Key * x.Count();
+                totalOccurance += x.Count();
+            });
+
+            var result = Math.Ceiling(weight / (totalOccurance > 0 ? totalOccurance : 1));
+            return result;
+        }
     }
 }

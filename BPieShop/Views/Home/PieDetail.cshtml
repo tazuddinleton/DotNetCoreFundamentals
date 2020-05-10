@@ -14,8 +14,8 @@
         <h3 class="card-title">@Model.Name</h3>
         <h4>$@Model.Price</h4>
         <p class="card-text">@Model.ShortDescription</p>
-        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-        4.0 stars
+        <star-rating rating="@Model.GetRating()"></star-rating>
+        @Model.GetRating() stars
     </div>
 </div>
 <!-- /.card -->
