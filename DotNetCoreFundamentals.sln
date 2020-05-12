@@ -15,11 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskManager.Data", "S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TagHelpers", "TagHelpers", "{103E6DBC-802B-43D5-9BEB-DD4B3B32ACB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHelpersAndViewComponents", "TagHelpersAndViewComponents\TagHelpersAndViewComponents.csproj", "{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpersAndViewComponents", "TagHelpersAndViewComponents\TagHelpersAndViewComponents.csproj", "{D7D79F29-2D2F-43D2-87A0-24DBC6D40079}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PieShop", "PieShop", "{2A1C288E-AF60-49DE-B46A-B2C0F9FC5174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPieShop", "BPieShop\BPieShop.csproj", "{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPieShop", "BPieShop\BPieShop.csproj", "{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EFCore", "EFCore", "{B9DF301D-8408-4E80-B041-D9AFBB31E29E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentApp", "EnrollmentApp\EnrollmentApp.csproj", "{CA3B3F71-3883-4249-8986-190073A95928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3B3F71-3883-4249-8986-190073A95928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3B3F71-3883-4249-8986-190073A95928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3B3F71-3883-4249-8986-190073A95928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3B3F71-3883-4249-8986-190073A95928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{9F1A1341-622C-45D5-AF5D-822B47056C38} = {571E0C2C-9956-45B2-9C89-CB45BE19DF82}
 		{D7D79F29-2D2F-43D2-87A0-24DBC6D40079} = {103E6DBC-802B-43D5-9BEB-DD4B3B32ACB8}
 		{EF9E690F-4ED2-4C80-8CE0-2ED24BB0AC47} = {2A1C288E-AF60-49DE-B46A-B2C0F9FC5174}
+		{CA3B3F71-3883-4249-8986-190073A95928} = {B9DF301D-8408-4E80-B041-D9AFBB31E29E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFE1C64F-0286-44AD-A8F8-D9F11DD4840D}
