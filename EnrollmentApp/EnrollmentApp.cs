@@ -14,9 +14,69 @@ namespace EnrollmentApp
     {
         static void Main(string[] args)
         {
+            NoTrackingDbContext();
+        }
 
-            Display_Students_Of_Course_CleanCode();
-            
+        static void NoTrackingDbContext()
+        {
+            using (var context = new EnrollmentContextNoTrack())
+            {
+                context.Students.ToList();                
+            }
+        }
+
+        static void QueryAsNoTracking()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                context                    
+                    .Courses
+                    .AsNoTracking()
+                    .Skip(1)
+                    .Take(2)                    
+                    .ToList();
+            }
+        }
+
+        static void Paginate()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                context
+                    .Courses
+                    .Skip(1)
+                    .Take(2)
+                    .ToList();
+            }
+        }
+
+        static void Like_Search()
+        {
+            var context = new EnrollmentContext();
+            var name = "%Taz%";
+            context.Students.SingleOrDefault(s => EF.Functions.Like(s.Name, name));
+
+        }
+
+        static void Execution_Methods()
+        {
+            var context = new EnrollmentContext();
+            context.Students.ToList();
+            context.Students.First();
+            context.Students.FirstOrDefault();
+            context.Students.Single(s => s.StudentId == 1);
+            context.Students.SingleOrDefault(s => s.StudentId == 1);
+
+            // Last() and LastOrDefault() works with OrderBy()
+            context.Students.OrderBy(s => s.StudentId).Last();
+            context.Students.OrderBy(s => s.StudentId).LastOrDefault();
+            context.Students.Find(2);
+
+            /*
+             * Aggregate Functions
+             Average(), Sum(), Min(), Max()
+             */
+
         }
 
         static void Display_Students_Of_Course_CleanCode()
@@ -33,7 +93,6 @@ namespace EnrollmentApp
                 Console.WriteLine(item.Student.Name);
             }
         }
-
 
         static void Remove_Jack_Sparrow_From_CleanCode()
         {
@@ -73,8 +132,6 @@ namespace EnrollmentApp
                 context.SaveChanges();
             }
         }
-
-
 
         static void Seed()
         {
