@@ -1,4 +1,5 @@
 ﻿using EnrollmentApp.Entities;
+using EnrollmentApp.EntityFrameworkFeatures.ViewStoredProceduresRawSql;
 using EnrollmentApp.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -14,7 +15,7 @@ namespace EnrollmentApp
     {
         static void Main(string[] args)
         {
-            QueryingManyToMany();
+            TestCourseStatView.DisplayFromCourseView();
         }
 
         static void QueryingManyToMany()

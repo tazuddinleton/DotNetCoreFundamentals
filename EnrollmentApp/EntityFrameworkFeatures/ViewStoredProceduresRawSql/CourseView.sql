@@ -1,0 +1,3 @@
+﻿CREATE OR ALTER VIEW CourseStat
+AS
+SELECT * FROM Courses
