@@ -14,14 +14,193 @@ namespace EnrollmentApp
     {
         static void Main(string[] args)
         {
-            NoTrackingDbContext();
+            QueryingManyToMany();
+        }
+
+        static void QueryingManyToMany()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                //var instructor = 
+                //    context.Instructors
+                // .Include(x => x.Courses)
+                // .ThenInclude(e => e.Enrollments)
+                // .ThenInclude(s => s.Student)                 
+                // .FirstOrDefault(x => x.Name.Contains("Bob"));
+
+                var instructor = context.Instructors.SingleOrDefault(x => x.Name.Contains("Bob"));
+
+                var bobsCourseInfo =
+                    context.Courses
+                    .Where(x => x.InstructorId == instructor.InstructorId)
+                    .Select(x => new
+                    {                        
+                        Course = new
+                        {
+                            Title = x.Title,
+                            Students = x.Enrollments.Select(e => e.Student)
+                        }
+                    })
+                    .ToList();
+            }
+        }
+
+        static void UpdateUsingEntry()
+        {
+            var context = new EnrollmentContext();
+            var instructor = context.Instructors
+                .Include(i => i.Courses)
+                .SingleOrDefault(x => x.Name.Contains("Shifu"));
+
+            var course = instructor.Courses[0];
+            course.Title = "The first course of master shifu";
+            using (var newContext = new EnrollmentContext())
+            {
+                newContext.Entry(course).State = EntityState.Modified;
+                newContext.SaveChanges();
+            }
+        }
+
+        static void ProjectAndJoin()
+        {
+
+
+            using (var context = new EnrollmentContext())
+            {
+
+
+                var courses = context.Courses
+                    .Where(x => x.Enrollments.Count > 2)
+                    .Select(x => new
+                    {
+                        Title = x.Title,
+                        Instructor = x.Instructor.Name
+                    })
+                    .ToList();
+            }
+        }
+
+        static void Projection()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                var courses = context.Courses
+                    .Where(x => x.Enrollments.Count > 2)
+                    .Select(x => new
+                    {
+                        Title = x.Title,
+                        Instructor = x.Instructor.Name
+                    })
+                    .ToList();
+            }
+        }
+
+        static void EagerLoading()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                context.Students.
+                    Include(x => x.Enrollments).
+                    ToList();
+
+                context.Courses
+                    .Include(x => x.Instructor)
+                    .ThenInclude(x => x.Courses)
+                    .ToList();
+            }
+        }
+
+        static void InsertCourseWithFK(int id)
+        {
+            var newCourse = new Course() { InstructorId = id, Title = "New Chopstick mastery course", StartDate = DateTime.Now, EndDate = DateTime.Now };
+            using (var newContext = new EnrollmentContext())
+            {
+                newContext.Courses.Add(newCourse);
+                newContext.SaveChanges();
+            }
+        }
+
+        static void UpdateInstructorUsingAttach(int id)
+        {
+            var context = new EnrollmentContext();
+            var instructor = context.Instructors
+                    .Include(i => i.Courses)
+                    .FirstOrDefault(i => i.InstructorId == id);
+
+            instructor.Name = "Master Shifu - The true master";
+            instructor.Courses.Add(new Course() { Title = "Mastering chop sticks 3", StartDate = DateTime.Now, EndDate = DateTime.Now });
+
+            using (var newContext = new EnrollmentContext())
+            {
+                newContext.Instructors.Attach(instructor);
+
+                newContext.SaveChanges();
+            }
+        }
+
+        static void UpdateInstructorDisconnected(int id)
+        {
+            var context = new EnrollmentContext();
+            var instructor = context.Instructors
+                    .Include(i => i.Courses)
+                    .FirstOrDefault(i => i.InstructorId == id);
+
+            instructor.Name = "Master Shifu - The true master";
+
+            using (var newContext = new EnrollmentContext())
+            {
+                newContext.Instructors.Update(instructor);
+                newContext.Courses.RemoveRange(instructor.Courses.OrderBy(x => x.CourseId).Last());
+                newContext.SaveChanges();
+            }
+        }
+
+        static void UpdateInstructor(int id)
+        {
+            using (var context = new EnrollmentContext())
+            {
+                var instructor = context.Instructors
+                    .Include("Courses")
+                    .FirstOrDefault(i => i.InstructorId == id);
+                instructor.Courses.Add(new Course() { Title = "Mastering chop sticks 2", StartDate = DateTime.Now, EndDate = DateTime.Now });
+                context.Instructors.Update(instructor);
+                context.SaveChanges();
+            }
+        }
+
+        static void GetAllCourses()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                var courses = context.Courses
+                    .Include(c => c.Instructor)
+                    .ToList();
+                courses.ForEach(c => Console.WriteLine($"{c.Title} \n\tby {c.Instructor.Name}"));
+            }
+        }
+
+        static void InsertRelatedData()
+        {
+            using (var context = new EnrollmentContext())
+            {
+                context.Instructors.Add(new Instructor()
+                {
+                    Name = "Master Shifu",
+                    Courses = new List<Course>
+                    {
+                        new Course(){ Title = "Mastering the troll fu", StartDate = DateTime.Now, EndDate = DateTime.Now}
+                    }
+                });
+
+                context.SaveChanges();
+            }
         }
 
         static void NoTrackingDbContext()
         {
             using (var context = new EnrollmentContextNoTrack())
             {
-                context.Students.ToList();                
+                context.Students.ToList();
             }
         }
 
@@ -29,11 +208,11 @@ namespace EnrollmentApp
         {
             using (var context = new EnrollmentContext())
             {
-                context                    
+                context
                     .Courses
                     .AsNoTracking()
                     .Skip(1)
-                    .Take(2)                    
+                    .Take(2)
                     .ToList();
             }
         }
@@ -81,7 +260,7 @@ namespace EnrollmentApp
 
         static void Display_Students_Of_Course_CleanCode()
         {
-          
+
             var context = new EnrollmentContext();
             var course = context.Courses
                 .Include("Enrollments")
@@ -113,10 +292,10 @@ namespace EnrollmentApp
                     course.Enrollments.Remove(enrollment);
                 }
                 context.SaveChanges();
-                                
+
             }
         }
-        
+
         static void Enroll_Every_Student_In_Clean_Code_Course()
         {
             using (var context = new EnrollmentContext())
