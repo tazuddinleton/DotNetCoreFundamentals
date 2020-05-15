@@ -15,7 +15,8 @@ namespace EnrollmentApp
     {
         static void Main(string[] args)
         {
-            TestCourseStatView.DisplayFromCourseView();
+            
+            TestViewsStoredProcedures.GetCourseDetailByInstructor(1);
         }
 
         static void QueryingManyToMany()

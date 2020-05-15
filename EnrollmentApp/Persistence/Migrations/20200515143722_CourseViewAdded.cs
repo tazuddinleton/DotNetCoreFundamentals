@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.IO;
 
 namespace EnrollmentApp.Persistence.Migrations
 {
@@ -6,11 +7,9 @@ namespace EnrollmentApp.Persistence.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(
-                @"CREATE OR ALTER VIEW CourseStat
-                AS
-                SELECT * FROM Courses"
-                );
+            var sql = File.ReadAllText("G:\\DotNetCoreFundamentals\\DotNetCoreFundamentals\\" +
+                "EnrollmentApp\\EntityFrameworkFeatures\\ViewStoredProceduresRawSql\\CourseView.sql");
+            migrationBuilder.Sql(sql);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
