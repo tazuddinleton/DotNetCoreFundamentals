@@ -57,5 +57,13 @@ namespace EnrollmentApp.EntityFrameworkFeatures.ViewStoredProceduresRawSql
                 stats.ForEach(st => Console.WriteLine($"{st.Title} - by {st.Name}, Number of students:  {st.NumOfEnrolledStudents}"));
             }
         }
+
+        public static void ExecuteSqlCommand()
+        {
+            using (var context = new EnrollmentContext())
+            { 
+                
+            }
+        }
     }
 }

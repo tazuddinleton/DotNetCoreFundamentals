@@ -8,11 +8,11 @@ using System.Text;
 
 namespace EnrollmentApp.Persistence
 {
-    class EnrollmentContext : DbContext
+    public class EnrollmentContext : DbContext
     {
         private readonly string _connString = "Server = (localdb)\\mssqllocaldb; Database=EnrollmentDb;";
         public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses{ get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<CourseStat> CourseStats { get; set; }
         //public DbSet<CourseDetail> CourseDetails { get; set; }
@@ -20,16 +20,26 @@ namespace EnrollmentApp.Persistence
 
         public EnrollmentContext()
         {
-            
+
+        }
+
+        public EnrollmentContext(DbContextOptions options)
+            : base(options)
+        {
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder                
-                .UseConsoleLoggerFactory()
-                .EnableSensitiveDataLogging()
-                .UseSqlServer(_connString)
-                ;
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                    //.UseConsoleLoggerFactory()
+                    //.EnableSensitiveDataLogging()
+                    .UseSqlServer(_connString)
+                    ;
+            }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
