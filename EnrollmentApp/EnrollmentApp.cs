@@ -15,8 +15,34 @@ namespace EnrollmentApp
     {
         static void Main(string[] args)
         {
-            
-            TestViewsStoredProcedures.GetCourseDetailByInstructor(1);
+
+            var context = new EnrollmentContext();
+
+            if (!context.Schedules.Any())
+            {
+                var schedule = new Schedule()
+                {
+                    Title = "Schedule 1"
+                };
+
+                schedule.Instances.Add(new Instance { Date = DateTime.Now });
+                schedule.Instances.Add(new Instance { Date = DateTime.Now.AddDays(1) });
+
+                context.Schedules.Add(schedule);
+                context.SaveChanges();
+            }
+
+
+            var sc = context.Schedules
+                .Include(x => x.Instances)
+                .SingleOrDefault(x => x.Id == 1);
+
+            sc.Instances.Remove(sc.Instances.First());
+            context.SaveChanges();
+
+
+            Console.WriteLine("asd");
+
         }
 
         static void QueryingManyToMany()

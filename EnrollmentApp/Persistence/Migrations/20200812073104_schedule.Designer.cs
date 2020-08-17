@@ -4,14 +4,16 @@ using EnrollmentApp.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EnrollmentApp.Persistence.Migrations
 {
     [DbContext(typeof(EnrollmentContext))]
-    partial class EnrollmentContextModelSnapshot : ModelSnapshot
+    [Migration("20200812073104_schedule")]
+    partial class schedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
