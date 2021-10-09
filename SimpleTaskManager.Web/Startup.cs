@@ -49,12 +49,15 @@ namespace SimpleTaskManager.Web
                     c.RejectPrincipal();
             })
             .AddCookie(ExternalAuthenticationDefaults.AuthenticationScheme)
-            .AddGoogle(o =>
-            {
-                o.SignInScheme = ExternalAuthenticationDefaults.AuthenticationScheme;
-                o.ClientId = Configuration["google:client_id"];
-                o.ClientSecret = Configuration["google:client_secret"];                
-            });
+            .AddOpenIdConnect()
+            //.AddGoogle(o =>
+            //{
+            //    o.SignInScheme = ExternalAuthenticationDefaults.AuthenticationScheme;
+            //    o.ClientId = Configuration["google:client_id"];
+            //    o.ClientSecret = Configuration["google:client_secret"];                
+            //});
+
+
 
         }
 

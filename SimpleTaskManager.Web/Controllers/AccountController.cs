@@ -26,7 +26,7 @@ namespace SimpleTaskManager.Web.Controllers
 
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = "/")
-        {
+        { 
             return View(new LoginModel() { ReturnUrl = returnUrl });
         }
 
@@ -62,7 +62,8 @@ namespace SimpleTaskManager.Web.Controllers
                 RedirectUri = Url.Action("GoogleLoginCallback"),
                 Items =
                 {
-                    {"returnUrl", returnUrl }
+                    {"returnUrl", returnUrl },
+                    {"test_key", "test value" }
                 }
             };
             return Challenge(props, GoogleDefaults.AuthenticationScheme);
